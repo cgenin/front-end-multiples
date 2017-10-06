@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<fem-router>
+    <fem-route path="/next" type="JS"  func="test2"></fem-route>
+    <fem-route path="/" type="JS" scripts="/examples/js.js" exact func="jsMain" default="true"></fem-route>
+</fem-router>
+<script>
+
+
+
+
+  function test2(elm) {
+    let h1 = document.createElement('h1');
+    h1.innerHTML = 'Next Page'
+    const div1 = document.createElement('div')
+    div1.appendChild(h1)
+    elm.appendChild(div1);
+
+    let a = document.createElement('a');
+    a.href = '#'
+    a.appendChild(document.createTextNode('To Home'))
+    a.addEventListener('click', function (evt) {
+      window.femRouter.Link('/', false)(evt);
+    });
+    const div2 = document.createElement('div')
+    div2.appendChild(a)
+    elm.appendChild(div2);
+  }
+</script>
+<script src="umd/front-end-multiples.js"></script>
+</body>
+</html>

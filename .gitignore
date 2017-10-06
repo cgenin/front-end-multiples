@@ -1,0 +1,6 @@
+.idea
+cjs
+es
+umd
+*.iml
+node_modules

@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "import"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors"
+  ],
+  "rules": {
+    "import/no-named-as-default":0,
+    "no-unused-vars": [ 2, { "ignoreRestSiblings": true }],
+    "prefer-arrow-callback": 2,
+    "semi": [ 0  ]
+  }
+}
