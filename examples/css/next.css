@@ -1,0 +1,10 @@
+h1.red {
+    color: red;
+}
+
+button.btn-king-size{
+    background-color: rgb(38, 166, 154);
+    color:rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-size: 15px;
+}

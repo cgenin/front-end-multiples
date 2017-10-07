@@ -1,8 +1,8 @@
 {
-  "name": "front-end-multiples",
+  "name": "fem-angularjs",
   "version": "0.0.1",
-  "description": "Front-end-management-for multiple SPA framework",
-  "repository": "cgenin/front-end-multiples",
+  "description": "Front-end-management-for angularjs implementation",
+  "repository": "cgenin/front-end-multiples/modules/fem-angularjs",
   "license": "MIT",
   "authors": [
     "Christophe Genin"
@@ -24,11 +24,7 @@
 
   },
   "dependencies": {
-    "history": "^4.7.2",
-    "invariant": "^2.2.2",
-    "loose-envify": "^1.3.1",
-    "path-to-regexp": "^1.7.0",
-    "warning": "^3.0.0"
+    "angular":"1.6.6"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

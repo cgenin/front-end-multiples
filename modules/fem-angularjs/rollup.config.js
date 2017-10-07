@@ -6,13 +6,14 @@ import resolve from 'rollup-plugin-node-resolve'
 
 const config = {
   input: 'src/index.js',
-  name: 'FEM',
+  name: 'FEM-ANGULARJS',
   globals: {
     document:'document',
-    window:'window'
+    window:'window',
+    angular:'angular'
   },
   external: [
-    'document', 'window'
+    'document', 'window','angular'
   ],
   plugins: [
     babel({

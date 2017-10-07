@@ -1,0 +1,58 @@
+:root{
+    --nav-bar-item-width:100px;
+}
+
+body {
+    font-size: 14px;
+    margin: 0;
+}
+
+.nav-bar {
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    align-items: center;
+    color: white;
+    height: 50px;
+    margin: 0px;
+}
+
+.nav-bar .item {
+    min-width: var(--nav-bar-item-width);
+    width: var(--nav-bar-item-width);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+
+.nav-bar .item a,
+.nav-bar .item a:visited
+{
+
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+button.btn-king-size{
+    font-size: 20px;
+    padding: 5;
+    background-color: white;
+
+}
+
+.container h1 {
+    text-align: center;
+}
+

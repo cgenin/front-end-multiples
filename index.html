@@ -3,34 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/examples/css/index.css">
 </head>
 <body>
-<fem-router>
-    <fem-route path="/next" type="JS"  func="test2"></fem-route>
-    <fem-route path="/" type="JS" scripts="/examples/js.js" exact func="jsMain" default="true"></fem-route>
-</fem-router>
+<div class="nav-bar">
+    <div class="item">
+        <a href="/" data-goto="/">Home</a>
+    </div>
+    <div class="item">
+        <a href="/next" data-goto="/next">JS module</a>
+    </div>
+</div>
+<div class="container">
+    <fem-router>
+        <fem-route path="/" type="JS" func="homeBootstrap" exact default></fem-route>
+        <fem-route path="/next" type="JS" scripts="/examples/javascript/next.js, /examples/css/next.css" func="jsMain" ></fem-route>
+    </fem-router>
+</div>
 <script>
-
-
-
-
-  function test2(elm) {
-    let h1 = document.createElement('h1');
-    h1.innerHTML = 'Next Page'
-    const div1 = document.createElement('div')
-    div1.appendChild(h1)
-    elm.appendChild(div1);
-
-    let a = document.createElement('a');
-    a.href = '#'
-    a.appendChild(document.createTextNode('To Home'))
-    a.addEventListener('click', function (evt) {
-      window.femRouter.Link('/', false)(evt);
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".nav-bar .item a")
+            .forEach(function (elm) {
+                elm.addEventListener("click", function (evt) {
+                    var goto = elm.getAttribute('data-goto');
+                    window.femRouter.Link(goto)(evt);
+                });
+            });
     });
-    const div2 = document.createElement('div')
-    div2.appendChild(a)
-    elm.appendChild(div2);
-  }
+
+    function homeBootstrap(elm){
+        let h1 = document.createElement('h1');
+        h1.innerHTML = 'Home - page ';
+        const div1 = document.createElement('div');
+        div1.appendChild(h1);
+        elm.appendChild(div1);
+
+        let p = document.createElement('p');
+        p.appendChild(document.createTextNode('This element was created by the js script present in the index.html page.'));
+        elm.appendChild(p);
+
+        let a = document.createElement('button');
+        a.classList= 'btn-king-size';
+        a.appendChild(document.createTextNode('Test Javascript'))
+        a.addEventListener('click',  (evt) => {
+            alert('js defined in the index.html')
+        });
+        const div2 = document.createElement('div')
+        div2.appendChild(a);
+        elm.appendChild(div2);
+    }
+
 </script>
 <script src="umd/front-end-multiples.js"></script>
 </body>

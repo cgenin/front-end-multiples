@@ -1,7 +1,6 @@
 import './FemRouter'
 import './FemRoute'
 import Link from './Link'
-import LoadFile from './LoadFile'
 import BrowserRouter from './BrowserRouter'
 
 const {history} = BrowserRouter;
