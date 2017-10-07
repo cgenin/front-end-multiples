@@ -1,4 +1,13 @@
-export function toBoolean(v) {
+/**
+ *  Node utils function
+ */
+
+/**
+ * Convert an attribute of an html node to boolean.
+ * @param v
+ * @returns {boolean}
+ */
+function toBoolean(v) {
     if (!v) {
         return false;
     }
@@ -6,7 +15,12 @@ export function toBoolean(v) {
     return 'TRUE' === v.toUpperCase();
 }
 
-export function toFunc(v) {
+/**
+ * convert string to function attached to the window object
+ * @param v
+ * @returns {*}
+ */
+function toFunc(v) {
     if (!v) {
         throw () => {
         };
@@ -15,17 +29,19 @@ export function toFunc(v) {
     return window[v];
 }
 
-export function toArrayOfString(v) {
+/**
+ * Split the attribute value of an element by ','.
+ * @param v
+ * @returns {*}
+ */
+function toArrayOfString(v) {
     if (!v) {
         return [];
     }
     return v.split(',')
 }
 
-export function cleanNodes(root) {
-    if (root && root.hasChildNodes()) {
-        Array.from(root.childNodes)
-            .filter(node => node.tagName !== 'FEM-ROUTE')
-            .forEach(node => root.removeChild(node))
-    }
+
+export default {
+    toArrayOfString, toBoolean, toFunc
 }

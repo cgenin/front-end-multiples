@@ -1,4 +1,5 @@
 import createBrowserHistory from 'history/createBrowserHistory'
+import warning from 'warning';
 
 class BrowserRouter {
   constructor() {
@@ -19,8 +20,7 @@ class BrowserRouter {
 
       this.listeners = [];
       this.unlisten = this.history.listen((location, action) => {
-
-        console.log(location)
+        warning(location, 'location must be set');
         this.state = this._initiliazeState(location, action);
         this.listeners.forEach(f => f(this.state))
       });

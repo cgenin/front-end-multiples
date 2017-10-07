@@ -1,3 +1,6 @@
+/**
+ * Node element for route.
+ */
 class FemRoute extends HTMLElement {
 
   constructor(){
@@ -5,5 +8,4 @@ class FemRoute extends HTMLElement {
 
   }
 }
-
 document.registerElement('fem-route', FemRoute)

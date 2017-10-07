@@ -1,9 +1,12 @@
 import matchPath from './matchPath'
-import {toBoolean} from './NodeUtils'
+import NodeUtils from './NodeUtils'
 import BrowserRouter from './BrowserRouter'
 import GenericDrawer, {EmptyType} from './GenericDrawer'
+import warning from 'warning';
 
-
+/**
+ * Main element which managed the routes.
+ */
 class FemRouter extends HTMLElement {
 
     constructor() {
@@ -11,6 +14,12 @@ class FemRouter extends HTMLElement {
         this.views = [];
     }
 
+
+    /**
+     * Method for managing history change.
+     * @param state new Stateof the history
+     * @private
+     */
     _changed(state) {
        this.current.unmount()
             .then(
@@ -19,7 +28,7 @@ class FemRouter extends HTMLElement {
 
                     const view = this.views.find(v => {
                         const t = {location, ...v};
-                        return this.computeMatch(t)
+                        return this._computeMatch(t)
                     });
 
                     if (view) {
@@ -32,11 +41,11 @@ class FemRouter extends HTMLElement {
                             .then(c => c.bootstrap())
                             .catch(err => console.error(err));
                     } else {
-                        console.error(`path not ${location.pathname} found`)
-                        const def = this.views.find(v => toBoolean(v.default))
+                        const def = this.views.find(v => NodeUtils.toBoolean(v.default));
                         if (def) {
                             BrowserRouter.history.push(def.path)
                         }
+                        warning(def, `path not ${location.pathname} found and default route not existe. Impossible to redirect`);
                     }
                 }
             )
@@ -45,23 +54,32 @@ class FemRouter extends HTMLElement {
 
     }
 
-    computeMatch({location, path, strict, exact, sensitive}) {
-
-        const pathname = location.pathname
-
+    /**
+     * Method for choosing if the path match the current location.
+     * @param location
+     * @param path
+     * @param strict
+     * @param exact
+     * @param sensitive
+     * @returns {*}
+     * @private
+     */
+    _computeMatch({location, path, strict, exact, sensitive}) {
+        const pathname = location.pathname;
         return path ? matchPath(pathname, {path, strict, exact, sensitive}) : false
     }
 
-    createdCallback() {
 
+    createdCallback() {
         this.current = EmptyType;
         this._changed = this._changed.bind(this)
+        // create the current history router.
         BrowserRouter.mount();
     }
 
 
     attachedCallback() {
-
+        // get all routes define for this router.
         this.views = Array.from(document.querySelectorAll('fem-route'))
             .map(elm => {
                 const attrs = Array.from(elm.attributes)
@@ -73,14 +91,16 @@ class FemRouter extends HTMLElement {
                     .reduce((a, b) => Object.assign({}, a, b));
                 return Object.assign({}, attrs, {element: elm});
             });
-
+        // match the loading route
         this._changed(BrowserRouter.state);
+        // registering the change listener.
         BrowserRouter.register(this._changed)
 
     }
 
     detachedCallback() {
-        BrowserRouter.unMount()
+        // destroy the history router.
+        BrowserRouter.unMount();
         this.views = []
     }
 }
