@@ -4,3 +4,4 @@ es
 umd
 *.iml
 node_modules
+example/

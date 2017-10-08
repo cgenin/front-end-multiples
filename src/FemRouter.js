@@ -12,6 +12,7 @@ class FemRouter extends HTMLElement {
     constructor() {
         super();
         this.views = [];
+        this.lastMatchedView = {};
     }
 
 
@@ -21,15 +22,20 @@ class FemRouter extends HTMLElement {
      * @private
      */
     _changed(state) {
-       this.current.unmount()
+        const {location} = state;
+
+        const view = this.views.find(v => {
+            const t = {location, ...v};
+            return this._computeMatch(t)
+        });
+
+        if (this.lastMatchedView === view.element) {
+            return;
+        }
+
+        this.current.unmount()
             .then(
                 () => {
-                    const {location} = state;
-
-                    const view = this.views.find(v => {
-                        const t = {location, ...v};
-                        return this._computeMatch(t)
-                    });
 
                     if (view) {
                         new GenericDrawer(view.element)
@@ -39,6 +45,7 @@ class FemRouter extends HTMLElement {
                                 return c;
                             })
                             .then(c => c.bootstrap())
+                            .then(() => this.lastMatchedView = view.element)
                             .catch(err => console.error(err));
                     } else {
                         const def = this.views.find(v => NodeUtils.toBoolean(v.default));

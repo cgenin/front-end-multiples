@@ -9,11 +9,10 @@ const config = {
   name: 'FEM-ANGULARJS',
   globals: {
     document:'document',
-    window:'window',
-    angular:'angular'
+    window:'window'
   },
   external: [
-    'document', 'window','angular'
+    'document', 'window'
   ],
   plugins: [
     babel({
