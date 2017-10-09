@@ -17,6 +17,9 @@ const build = (root, opts) => {
             const injector = elt.injector();
             const rootScope = injector.get('$rootScope');
             const result = rootScope.$destroy();
+            if(window.angular){
+                delete window.angular;
+            }
             setTimeout(resolve);
         });
     };

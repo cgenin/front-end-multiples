@@ -169,7 +169,7 @@ export default class GenericDrawer {
                     // call the js function with the view node in parameter.
                     const bootstrap = () => {
                         return new Promise((resolve) => {
-                            const func = NodeUtils.toFunc(this._findAttrs('func'));
+                            const func = NodeUtils.toFunc(this._findAttrs('exec'));
                             func(newNode);
                             resolve();
                         });
