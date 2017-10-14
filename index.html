@@ -16,12 +16,16 @@
     <div class="item">
         <a href="/angularjs" data-goto="/angularjs">Angularjs</a>
     </div>
+    <div class="item">
+        <a href="/iframe" data-goto="/iframe">iframe</a>
+    </div>
 </div>
 <div class="container">
     <fem-router>
         <fem-route path="/"  exec="homeBootstrap" exact default></fem-route>
         <fem-route path="/angularjs" type="angularjs" scripts="/modules/fem-angularjs/umd/app.example.js" main-angular-module="example-app" ui-view></fem-route>
         <fem-route path="/next" type="JS" scripts="/examples/javascript/next.js, /examples/css/next.css" exec="jsMain" ></fem-route>
+        <fem-route path="/iframe" type="iframe" scripts="/examples/css/iframe.css" src="/examples/page.html"></fem-route>
     </fem-router>
 </div>
 <script>
@@ -60,5 +64,6 @@
 </script>
 <script src="/umd/front-end-multiples.js"></script>
 <script src="/modules/fem-angularjs/umd/fem-angularjs.js"></script>
+<script src="/modules/fem-iframe/umd/fem-iframe.js"></script>
 </body>
 </html>
