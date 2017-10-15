@@ -19,13 +19,22 @@
     <div class="item">
         <a href="/iframe" data-goto="/iframe">iframe</a>
     </div>
+    <div class="item">
+        <a href="/vue" data-goto="/vue">Vue</a>
+    </div>
 </div>
 <div class="container">
     <fem-router>
-        <fem-route path="/"  exec="homeBootstrap" exact default></fem-route>
-        <fem-route path="/angularjs" type="angularjs" scripts="/modules/fem-angularjs/umd/app.example.js" main-angular-module="example-app" ui-view></fem-route>
-        <fem-route path="/next" type="JS" scripts="/examples/javascript/next.js, /examples/css/next.css" exec="jsMain" ></fem-route>
-        <fem-route path="/iframe" type="iframe" scripts="/examples/css/iframe.css" src="/examples/page.html"></fem-route>
+        <fem-route path="/" exec="homeBootstrap" exact default></fem-route>
+        <fem-route path="/angularjs" type="angularjs" scripts="/modules/fem-angularjs/umd/app.example.js"
+                   main-angular-module="example-app" ui-view></fem-route>
+        <fem-route path="/next" type="JS" scripts="/examples/javascript/next.js, /examples/css/next.css"
+                   exec="jsMain"></fem-route>
+        <fem-route path="/iframe" type="iframe" scripts="/examples/css/iframe.css"
+                   src="/examples/page.html"></fem-route>
+        <fem-route path="/vue" type="vue"
+                   scripts="/modules/fem-vue/example/dist/static/js/app.js, /modules/fem-vue/example/dist/static/css/app.css"
+                   component-getter="getVueComponent" component-name="HelloWorld"></fem-route>
     </fem-router>
 </div>
 <script>
@@ -39,7 +48,7 @@
             });
     });
 
-    function homeBootstrap(elm){
+    function homeBootstrap(elm) {
         let h1 = document.createElement('h1');
         h1.innerHTML = 'Home - page ';
         const div1 = document.createElement('div');
@@ -51,9 +60,9 @@
         elm.appendChild(p);
 
         let a = document.createElement('button');
-        a.classList= 'btn-king-size';
+        a.classList = 'btn-king-size';
         a.appendChild(document.createTextNode('Test Javascript'))
-        a.addEventListener('click',  (evt) => {
+        a.addEventListener('click', (evt) => {
             alert('js defined in the index.html')
         });
         const div2 = document.createElement('div')
@@ -65,5 +74,6 @@
 <script src="/umd/front-end-multiples.js"></script>
 <script src="/modules/fem-angularjs/umd/fem-angularjs.js"></script>
 <script src="/modules/fem-iframe/umd/fem-iframe.js"></script>
+<script src="/modules/fem-vue/umd/fem-vue.js"></script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+yarn.lock
+node_modules
+cjs
+es
+umd
+example/node_modules
+example/dist

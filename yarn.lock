@@ -2394,6 +2394,10 @@ jest@^20.0.4:
   dependencies:
     jest-cli "^20.0.4"
 
+js-logger@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/js-logger/-/js-logger-1.4.1.tgz#f0230dc5e84e120f213d6e5a6b767a913d290335"
+
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"

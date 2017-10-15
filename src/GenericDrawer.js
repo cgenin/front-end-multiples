@@ -158,6 +158,7 @@ export default class GenericDrawer {
         const newNode = this._newNode(root);
         const destroyNode = () => {
             if (root && newNode) {
+                console.log('destroyNode');
                 root.removeChild(newNode);
             }
             return true;
