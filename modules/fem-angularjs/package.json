@@ -26,6 +26,7 @@
     "angular-ui-router": "^0.4.3",
     "babel-loader": "^6.4.1",
     "raw-loader": "^0.5.1",
+    "warning": "^3.0.0",
     "webpack": "^1.15.0"
   },
   "devDependencies": {

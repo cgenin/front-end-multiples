@@ -1,3 +1,5 @@
+import warning from 'warning';
+
 let idModule = 0;
 
 const build = (root, opts) => {
@@ -17,7 +19,7 @@ const build = (root, opts) => {
             const injector = elt.injector();
             const rootScope = injector.get('$rootScope');
             const result = rootScope.$destroy();
-            if(window.angular){
+            if (window.angular) {
                 delete window.angular;
             }
             setTimeout(resolve);
@@ -35,6 +37,9 @@ const angularjs = (config, root) => {
     const strictDi = config.getAttribute('strictDi');
     const uiview = config.getAttribute('ui-view');
 
+    warning(angular, 'for angularjs route, an angular instance must be on window.angular.');
+    warning(mainAngularModule, `for angularjs route, the main module app must be define in 'main-angular-module'`);
+
     const bootstrapEl = document.createElement('div');
     bootstrapEl.id = `fem-angular-${idModule++}`;
     root.appendChild(bootstrapEl);
@@ -44,7 +49,7 @@ const angularjs = (config, root) => {
         bootstrapEl.appendChild(uiViewEl);
     }
 
-    return build(root, {angular, mainAngularModule, strictDi, uiview,bootstrapEl, id:bootstrapEl.id});
+    return build(root, {angular, mainAngularModule, strictDi, uiview, bootstrapEl, id: bootstrapEl.id});
 };
 
 window.femRouter = window.femRouter || {};

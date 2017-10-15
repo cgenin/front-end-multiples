@@ -1,7 +1,7 @@
 const BABEL_ENV = process.env.BABEL_ENV
 const building = BABEL_ENV != undefined && BABEL_ENV !== 'cjs'
 
-const plugins = []
+const plugins = [];
 
 if (BABEL_ENV === 'umd') {
   plugins.push('external-helpers')
@@ -22,4 +22,4 @@ module.exports = {
     'stage-1',
   ],
   plugins: plugins
-}
+};

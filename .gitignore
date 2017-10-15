@@ -5,3 +5,4 @@ umd
 *.iml
 node_modules
 example/
+modules/fem-angularjs/.DS_Store

@@ -1,3 +1,5 @@
+import warning from 'warning';
+
 let number = 0;
 const toId = (id) => {
     return `fem-vue-${id}`;
@@ -10,21 +12,17 @@ const vue = (config, root) => {
     const componentName = config.getAttribute('component-name');
     const Vue = window.Vue;
     const storage = {};
-    if (!Vue) {
-        throw new Error("expected vue instance attached in window.Vue");
-    }
+
+    warning(Vue, "expected vue instance attached in window.Vue");
+    warning(componentGetter, "The route must have 'component-getter' attribute");
+    warning(loader, "Impossible to load the component getter function.");
+    warning(componentName, "The route must have 'component-name' attribute");
 
     return {
         unmount() {
             return new Promise((resolve) => {
                 if (storage.instance) {
-                    try {
-
-                        console.log("call $destroy");
-                        storage.instance.$destroy();
-                    } catch (err) {
-                        console.log(err);
-                    }
+                    storage.instance.$destroy();
                     storage.instance.$el.innerHTML = '';
                     delete storage.instance;
                 }

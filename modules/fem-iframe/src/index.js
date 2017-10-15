@@ -1,3 +1,4 @@
+import warning from 'warning';
 let number = 0;
 
 const DEFAULt_CLASSNAME = 'femrouter-iframe';
@@ -26,6 +27,9 @@ const iframe = (config, root) => {
     const id = ++number;
     const className = config.getAttribute('className') || DEFAULt_CLASSNAME;
     const src = config.getAttribute('src');
+
+    warning(!!src, 'iframe type route must have src attribute.');
+
     const style = (className === DEFAULt_CLASSNAME) ? addClassName(id) : null;
     const iframe = document.createElement('iframe');
     iframe.classList.add(className);

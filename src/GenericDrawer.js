@@ -1,3 +1,4 @@
+import warning from 'warning';
 import NodeUtils from './NodeUtils'
 
 /**
@@ -158,7 +159,6 @@ export default class GenericDrawer {
         const newNode = this._newNode(root);
         const destroyNode = () => {
             if (root && newNode) {
-                console.log('destroyNode');
                 root.removeChild(newNode);
             }
             return true;
@@ -168,9 +168,12 @@ export default class GenericDrawer {
             return this._loadScripts()
                 .then((unmounter) => {
                     // call the js function with the view node in parameter.
+                    const execAttr = this._findAttrs('exec');
+                    warning(execAttr, `an Js route must have an 'exec' attribute`);
+                    const func = NodeUtils.toFunc(execAttr);
+                    warning(func, `Impossible to load the function for ${execAttr}`);
                     const bootstrap = () => {
                         return new Promise((resolve) => {
-                            const func = NodeUtils.toFunc(this._findAttrs('exec'));
                             func(newNode);
                             resolve();
                         });

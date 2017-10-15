@@ -33,6 +33,10 @@ class FemRouter extends HTMLElement {
             return;
         }
 
+        const errorCb = (err)=>{
+            warning(false, err);
+        };
+
         this.current.unmount()
             .then(
                 () => {
@@ -46,7 +50,7 @@ class FemRouter extends HTMLElement {
                             })
                             .then(c => c.bootstrap())
                             .then(() => this.lastMatchedView = view.element)
-                            .catch(err => console.error(err));
+                            .catch(err => errorCb(err));
                     } else {
                         const def = this.views.find(v => NodeUtils.toBoolean(v.default));
                         if (def) {
@@ -56,7 +60,7 @@ class FemRouter extends HTMLElement {
                     }
                 }
             )
-            .catch(err => console.error(err));
+            .catch(err => errorCb(err));
 
 
     }
